@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mktou.dsi.module.bill.dao.IBillDao">
+	<resultMap id="BaseResultMap" type="com.mktou.dsi.module.bill.entity.Bill">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="bill_date" property="billDate" jdbcType="DATE" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="quantity" property="quantity" jdbcType="DECIMAL" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="pay_status" property="payStatus" jdbcType="CHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_by" property="createBy" jdbcType="INTEGER" />
+		<result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+		<result column="modify_by" property="modifyBy" jdbcType="INTEGER" />
+		<result column="modify_at" property="modifyAt" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, bill_date, amount, quantity, pay_time, pay_status, remark,
+		status, create_by,
+		create_at, modify_by, modify_at
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_bill
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from sys_bill
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.mktou.dsi.module.bill.entity.Bill">
+		insert into sys_bill (id, name, bill_date,
+		amount, quantity, pay_time,
+		pay_status, remark, status,
+		create_by, create_at, modify_by,
+		modify_at)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{billDate,jdbcType=DATE},
+		#{amount,jdbcType=DECIMAL}, #{quantity,jdbcType=DECIMAL}, #{payTime,jdbcType=TIMESTAMP},
+		#{payStatus,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR},
+		#{createBy,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=INTEGER},
+		#{modifyAt,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.mktou.dsi.module.bill.entity.Bill">
+		insert into sys_bill
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="billDate != null">
+				bill_date,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="quantity != null">
+				quantity,
+			</if>
+			<if test="payTime != null">
+				pay_time,
+			</if>
+			<if test="payStatus != null">
+				pay_status,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createAt != null">
+				create_at,
+			</if>
+			<if test="modifyBy != null">
+				modify_by,
+			</if>
+			<if test="modifyAt != null">
+				modify_at,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="billDate != null">
+				#{billDate,jdbcType=DATE},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				#{quantity,jdbcType=DECIMAL},
+			</if>
+			<if test="payTime != null">
+				#{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payStatus != null">
+				#{payStatus,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createAt != null">
+				#{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				#{modifyBy,jdbcType=INTEGER},
+			</if>
+			<if test="modifyAt != null">
+				#{modifyAt,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mktou.dsi.module.bill.entity.Bill">
+		update sys_bill
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="billDate != null">
+				bill_date = #{billDate,jdbcType=DATE},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="quantity != null">
+				quantity = #{quantity,jdbcType=DECIMAL},
+			</if>
+			<if test="payTime != null">
+				pay_time = #{payTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="payStatus != null">
+				pay_status = #{payStatus,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=INTEGER},
+			</if>
+			<if test="createAt != null">
+				create_at = #{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				modify_by = #{modifyBy,jdbcType=INTEGER},
+			</if>
+			<if test="modifyAt != null">
+				modify_at = #{modifyAt,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mktou.dsi.module.bill.entity.Bill">
+		update sys_bill
+		set name = #{name,jdbcType=VARCHAR},
+		bill_date = #{billDate,jdbcType=DATE},
+		amount = #{amount,jdbcType=DECIMAL},
+		quantity = #{quantity,jdbcType=DECIMAL},
+		pay_time = #{payTime,jdbcType=TIMESTAMP},
+		pay_status = #{payStatus,jdbcType=CHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		create_by = #{createBy,jdbcType=INTEGER},
+		create_at = #{createAt,jdbcType=TIMESTAMP},
+		modify_by = #{modifyBy,jdbcType=INTEGER},
+		modify_at = #{modifyAt,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
